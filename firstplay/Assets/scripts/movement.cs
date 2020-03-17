@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class movement : MonoBehaviour
 {
+    [SerializeField] float upvelocity = 1f;
+    [SerializeField] float rotateleft = 1f;
+    [SerializeField] float rotateright = 1f;
     Rigidbody rigidbody;
     AudioSource aud;
     void Start()
@@ -15,38 +18,50 @@ public class movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        movedirection();
+        thrust();
+        rotate();
     }
     
-    public void movedirection()
+    public void thrust()
     {
-        if(Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space))
         {
-            rigidbody.AddRelativeForce(Vector3.up);
+            rigidbody.AddRelativeForce(Vector3.up*upvelocity*Time.deltaTime);
             playaudio();
         }
 
+        else
+        {
+            aud.Stop();
+        }
+
+        
+    }
+
+    public void rotate()
+    {
+        rigidbody.freezeRotation = true;
         if (Input.GetKey(KeyCode.A))
         {
-            transform.Rotate(Vector3.forward);
+            transform.Rotate(Vector3.forward*rotateleft*Time.deltaTime);
         }
 
 
-        if (Input.GetKey(KeyCode.D))
+        else if (Input.GetKey(KeyCode.D))
         {
-            transform.Rotate(-Vector3.forward);
+            transform.Rotate(-Vector3.forward*rotateright*Time.deltaTime);
         }
+
+        rigidbody.freezeRotation = false;
     }
+
     public void playaudio()
     {
         if(!aud.isPlaying)
         {
             aud.Play();
         }
-        else
-        {
-            aud.Stop();
-        }
+  
     }
 
 }
