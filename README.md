@@ -1,7 +1,9 @@
 # Rocket Man
 
 
-Rocket man is a single Player Game . The Goal is to rech the Destination Without Crashing.
+Rocket man is a single Player Game  targeted for Windows Platform . The Goal is to rech the Destination Without Crashing.
+
+Technologies Used: Unity, C#, Blender, Visual Studio.
 
 
 ![1](https://user-images.githubusercontent.com/43724427/99944997-d4e5ac80-2d99-11eb-97e9-6560f246f177.PNG)
